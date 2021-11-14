@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "faker": "^5.5.3",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
+  },
+  "name": "caps",
+  "description": "",
+  "version": "1.0.0",
+  "main": "system.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essamomar93/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/essamomar93/caps/issues"
+  },
+  "homepage": "https://github.com/essamomar93/caps#readme"
+}
