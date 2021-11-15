@@ -4,38 +4,36 @@ const PORT = process.env.PORT || 3000;
 
 const caps = require('socket.io')(PORT);
 
-const driverSystem = caps.of('/driver-system');
-const vendorSystem = caps.of('/vendor-system');
+const capsConnection = caps.of('/system');
 
-
-caps.on('connection', (socket) => {
-  // console.log('CONNECTED', socket.id);
-  socket.on('order-info', (payload) => {
-
-    caps.emit('pickup', payload);
-
-    caps.emit('in_transit', payload);
-
-    caps.emit('deleverd', payload);
-
+capsConnection.on('connection', (socket) => {
+  console.log('CONNECTED', socket.id);
+  socket.on("pickup", (payload) => {
+    console.log(`---------------------------------`);
+    console.log("EVENT", {
+      event: 'pickup',
+      payload: payload,
+    });
+    capsConnection.emit('pickedUp', payload)
   });
-});
 
+  socket.on('pickup', (payload) => {
+    console.log("EVENT", {
+      event: 'in_transit',
+      payload: payload,
+    });
 
-driverSystem.on('connection', (socket) => {
-  // console.log('HEALTHCARE CONNECTED', socket.id);
-  socket.on('driver', (payload) => {
-    // console.log('I got here from the fire event');
-    driverSystem.emit('pickedUp', payload);
-
+    capsConnection.emit('delivered', payload)
   });
-});
 
-vendorSystem.on('connection', (socket) => {
-  // console.log('DIGESTIVE SYSTEM CONNECTED', socket.id);
-  socket.on('vendor', (payload) => {
-    // console.log('I got the food from fire event');
-    vendorSystem.emit('delivering', payload);
+  socket.on('pickup', (payload) => {
+    console.log("EVENT", {
+      event: 'deleverd',
+      payload: payload,
+    });
+    console.log(`---------------------------------`);
 
+    capsConnection.emit('delivering', payload)
   });
+
 });

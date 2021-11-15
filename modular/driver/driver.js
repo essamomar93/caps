@@ -4,32 +4,19 @@ const io = require('socket.io-client');
 
 /* ------ CONNECT ---------- */
 const host = 'http://localhost:3000';
-const capsConnection = io.connect(host);
-const driverPickedUp = io.connect(`${host}/driver-system`);
+const capsConnection = io.connect(`${host}/system`);
 
 /* ------ Listener ---------- */
-capsConnection.on('in_transit', in_transit);
-driverPickedUp.on('pickedUp', pickedUp);
+capsConnection.on('pickedUp', pickedUp);
+capsConnection.on('delivered', delivered);
 
-/* ------ Event Handler ---------- */
-function in_transit(payload) {
-  setTimeout(()=>{
-    console.log("EVENT",` event: 'in_transit',
-    time:${payload.time},
-    payload: {
-    store: ${payload.store},
-    orderID: ${payload.orderID},
-    customer: ${payload.customer},
-    address: ${payload.address},`);
-},1000)
-};
-
+/* ------ Function ---------- */
 
 function pickedUp(payload) {
-  setTimeout(()=>{
     console.log(`DRIVER: picked up ${payload.orderID}`);
-  },1500)
-  setTimeout(()=>{
-    console.log(`DRIVER: delivered up ${payload.orderID}`);
-  },2750)
 };
+
+function delivered(payload) {
+    console.log(`DRIVER: delivered up ${payload.orderID}`);
+};
+
