@@ -1,6 +1,6 @@
 'use strict';
 
-const events = require('../events');
+const events = require('../../events');
 
 events.on('in_transit', in_transit);
 

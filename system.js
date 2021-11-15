@@ -2,8 +2,8 @@
 
 const events = require('./events'); 
 
-require('./modular/vendor');
-require('./modular/driver');
+require('./modular/vendor/vendor');
+require('./modular/driver/driver');
 
 events.on('order-info', (payload) => {
     

@@ -1,6 +1,6 @@
 'use strict';
 
-const events = require('../events');
+const events = require('../../events');
 const faker = require('faker');
 
 var randomTime = faker.datatype.datetime();
