@@ -7,16 +7,37 @@ const host = 'http://localhost:3000';
 const capsConnection = io.connect(`${host}/system`);
 
 /* ------ Listener ---------- */
-capsConnection.on('pickedUp', pickedUp);
-capsConnection.on('delivered', delivered);
+capsConnection.on('order', order);
+// capsConnection.on('delivered', delivered);
+// capsConnection.on('pickedUp', pickedUp);
+
+capsConnection.emit('get_all');
+
 
 /* ------ Function ---------- */
 
-function pickedUp(payload) {
-    console.log(`DRIVER: picked up ${payload.orderID}`);
+// function pickedUp(payload){
+//     console.log(`delivered ${payload.orderID}`);
+//     setTimeout(() => {
+//         capsConnection.emit('in-transit', payload);
+//     }, 1000);
+// };
+
+function order(payload) {
+    console.log(`customer received the order, ${payload.id}`);
+    // 5
+    capsConnection.emit('received', payload)
+    setTimeout(() => {
+        capsConnection.emit('deleverd', payload);
+    }, 1500);
+    setTimeout(() => {
+        capsConnection.emit('in-transit', payload);
+    }, 1000);
 };
 
-function delivered(payload) {
-    console.log(`DRIVER: delivered up ${payload.orderID}`);
-};
-
+// function delivered(payload){
+//     console.log(`DRIVER: delivered ${payload.orderID}`);
+//     setTimeout(() => {
+//         capsConnection.emit('deleverd', payload);
+//     }, 1500);
+// };

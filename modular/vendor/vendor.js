@@ -18,6 +18,7 @@ var randomID = faker.datatype.uuid();
 var randomCustomer = faker.name.findName();
 var randomAddress = faker.address.streetAddress();
 
+// 1
 setInterval(() => {
   let time = randomTime
   let store = randomStore
@@ -27,6 +28,8 @@ setInterval(() => {
   capsConnection.emit('pickup', { time, store, orderID, customer, address });
 }, 5000);
 
+// 3_2
 function delivering(payload) {
-  console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
+  // console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
+    console.log(`Thank u for adding my task to the Q>> ${payload.orderID} `);
 }

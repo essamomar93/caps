@@ -4,12 +4,13 @@
     "jest": "^27.3.1",
     "socket.io": "^4.3.2",
     "socket.io-client": "^4.3.2",
-    "supertest": "^6.1.6"
+    "supertest": "^6.1.6",
+    "uuid": "^8.3.2"
   },
-  "name": "caps",
+  "name": "queue",
   "description": "![uml](first-CAPS.png)",
   "version": "1.0.0",
-  "main": "caps.js",
+  "main": "queue.js",
   "scripts": {
     "test": "jest"
   },
@@ -23,5 +24,6 @@
   "bugs": {
     "url": "https://github.com/essamomar93/caps/issues"
   },
-  "homepage": "https://github.com/essamomar93/caps#readme"
+  "homepage": "https://github.com/essamomar93/caps#readme",
+  "devDependencies": {}
 }
