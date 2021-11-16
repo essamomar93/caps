@@ -10,3 +10,8 @@
 ## Socket.io : 
 
 ![ Socket.io](Socket.io.png)
+ 
+
+ ## queue : 
+ ![queue](lab13.png) 
+ 
