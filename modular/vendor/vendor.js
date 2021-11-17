@@ -10,6 +10,7 @@ const capsConnection = io.connect(`${host}/system`);
 /* ------ Listener ---------- */
 
 capsConnection.on('delivering', delivering);
+// capsConnection.emit('get_all');
 
 /* ------ variabel ---------- */
 var randomTime = faker.datatype.datetime();
@@ -25,11 +26,11 @@ setInterval(() => {
   let orderID = randomID
   let customer = randomCustomer
   let address = randomAddress
-  capsConnection.emit('pickup', { time, store, orderID, customer, address });
+  capsConnection.emit('pickup', JSON.stringify({ time, store, orderID, customer, address }));
 }, 5000);
-
+// 
 // 3_2
 function delivering(payload) {
   // console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
-    console.log(`Thank u for adding my task to the Q>> ${payload.orderID} `);
+  console.log(`Thank u for adding my task to the Q>> ${payload.orderID} `);
 }

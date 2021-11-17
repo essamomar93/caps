@@ -16,28 +16,24 @@ capsConnection.emit('get_all');
 
 /* ------ Function ---------- */
 
-// function pickedUp(payload){
-//     console.log(`delivered ${payload.orderID}`);
-//     setTimeout(() => {
-//         capsConnection.emit('in-transit', payload);
-//     }, 1000);
-// };
-
 function order(payload) {
     console.log(`customer received the order, ${payload.id}`);
     // 5
-    capsConnection.emit('received', payload)
     setTimeout(() => {
-        capsConnection.emit('deleverd', payload);
-    }, 1500);
-    setTimeout(() => {
-        capsConnection.emit('in-transit', payload);
+        // console.log(`DRIVER: picked up ${payload.id}`);
+        capsConnection.emit('in-transit', JSON.stringify (payload));
+
     }, 1000);
+
+    setTimeout(() => {
+        // console.log(`DRIVER: delivered ${payload.id}`);
+        capsConnection.emit('deleverd', JSON.stringify (payload));
+
+    }, 1500);
+
+   
+    capsConnection.emit('received', payload)
+    // capsConnection.disconnect();
 };
 
-// function delivered(payload){
-//     console.log(`DRIVER: delivered ${payload.orderID}`);
-//     setTimeout(() => {
-//         capsConnection.emit('deleverd', payload);
-//     }, 1500);
-// };
+
